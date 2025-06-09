@@ -5,8 +5,7 @@ The objectives of this section are:
 - Setup the robot project for real control
 - Install needed interfaces
 
-We have two kind of rbots:
-- UB custom made **rUBot_mecanum**
+We have:
 - Commercial **LIMO** robot
 
 ![](./Images/01_Setup/rUBot_Limo.png)
@@ -28,7 +27,7 @@ Webgraphy:
 a) For **simulation** Using TheConstruct interface, we will have to clone the github repository:
 
 ```shell
-git clone https://github.com/manelpuig/ROS2_LIMO_ws.git
+git https://github.com/Mattyete/ROS2_LIMO_ws.git
 cd ROS2_LIMO_ws
 colcon build
 source install/local_setup.bash
@@ -125,8 +124,8 @@ The objective is to update the changes you have made, when working in ROS enviro
 - When you will Push them, the first time you will be asked to link the repository to your github account:
 - Open a terminal in and type the first time:
   ```shell
-  git config --global user.email "manel.puig@ub.edu"
-  git config --global user.name "manelpuig"
+  git config --global user.email "mayeteco7@gmail.com"
+  git config --global user.name "Mattyete"
   git commit -m "Message"
   git push
   ```
