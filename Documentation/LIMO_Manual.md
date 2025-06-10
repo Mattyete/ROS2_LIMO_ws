@@ -380,13 +380,19 @@ Primero hay que lanzar el bringup y navegar del punto inicial al objetivo.
 
 Usaremos Roboflow:
 1. Accede a https://roboflow.com/
+![Roboflow 1](./Images/Roboflow_1.png)
 2. Inicia sesión con Google
 3. Crea un espacio de trabajo (ej. TrafficSignals)
+![Roboflow 2](./Images/Roboflow_2.jpg)
 4. Crea un nuevo proyecto de tipo "Object Detection"
 5. Sube las imágenes de las señales (stop, izquierda, derecha, etc.)
-6. Etiqueta las imágenes y distribuye el trabajo entre compañeros
+![Roboflow 3](./Images/Roboflow_3.png)
+6. Etiqueta las imágenes
+![Roboflow 4](./Images/Roboflow_4.png)
 7. Entrena el modelo
+![Roboflow 5](./Images/Roboflow_5.png)
 8. Exporta el conjunto en formato YOLOv8 y descarga el `.zip`
+![Roboflow 6](./Images/Roboflow_6.png)
 
 ## 4. Predicción de señales
 
@@ -449,3 +455,7 @@ ros2 run my_robot_ai_identification rt_prediction_yolo_exec
 Una vez que el robot identifica la señal de tráfico, debe actuar en consecuencia a lo que detecte el robot, en caso de ser un STOP, para durante 3 segundos, en caso de ser un ceda disminuye la velocidad, etc.
 
 ![YOLO Detection Simulation](./Images/YOLO_detection_simulation.png)
+
+![YOLO Detection Simulation2](./Images/YOLO_no_detection_simulation.png)
+
+![YOLO Detection Real](./Images/YOLO_real_detection.png)
