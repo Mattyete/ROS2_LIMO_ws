@@ -1,39 +1,47 @@
-# **ROS2 rUBot setup**
+# **Configuración de ROS2 LIMO**
 
-The objectives of this section are:
-- Setup the robot project in virtual environment for simulation
-- Setup the robot project for real control
-- Install needed interfaces
+## Objetivos de esta sección:
 
-We have:
-- Commercial **LIMO** robot
+* Configurar el proyecto del robot en un entorno virtual para simulación.
+* Configurar el proyecto del robot para el control en entorno real.
+* Instalar las interfaces necesarias.
 
-![](./Images/01_Setup/rUBot_Limo.png)
+### Recurso utilizado:
 
-Webgraphy:
-- TheConstruct: Build Your First ROS2 Based Robot https://www.robotigniteacademy.com/courses/309
-- LIMO repository: https://github.com/agilexrobotics/limo_ros2/tree/humble
-- LIMO Doc: https://github.com/agilexrobotics/limo_pro_doc/blob/master/Limo%20Pro%20Ros2%20Foxy%20user%20manual(EN).md
-- LIMO bitbucket: https://bitbucket.org/theconstructcore/limo_robot/src/main/
-- https://bitbucket.org/theconstructcore/workspace/projects/ROB
-- TheConstruct image Humble-v3: https://hub.docker.com/r/theconstructai/limo/tags
-- https://github.com/AntoBrandi/Self-Driving-and-ROS-2-Learn-by-Doing-Odometry-Control/tree/main
-- https://github.com/AntoBrandi/Self-Driving-and-ROS-Learn-by-Doing-Odometry-Control
-- https://github.com/AntoBrandi/Arduino-Bot/tree/humble
+* Robot comercial **LIMO**
 
+![Robot LIMO](./Images/rUBot_Limo.png)
 
-## **1. Setup the robot project in virtual environment for simulation**
+### Webgrafía:
 
-a) For **simulation** Using TheConstruct interface, we will have to clone the github repository:
+* [TheConstruct: Build Your First ROS2 Based Robot](https://www.robotigniteacademy.com/courses/309)
+* [Repositorio LIMO (GitHub)](https://github.com/agilexrobotics/limo_ros2/tree/humble)
+* [Manual de usuario LIMO (Foxy)](https://github.com/agilexrobotics/limo_pro_doc/blob/master/Limo%20Pro%20Ros2%20Foxy%20user%20manual%28EN%29.md)
+* [Bitbucket LIMO (TheConstruct)](https://bitbucket.org/theconstructcore/limo_robot/src/main/)
+* [Proyectos ROB (TheConstruct Bitbucket)](https://bitbucket.org/theconstructcore/workspace/projects/ROB)
+* [Imagen Docker TheConstruct Humble-v3](https://hub.docker.com/r/theconstructai/limo/tags)
+* [Repositorio Odometry Control - ROS2](https://github.com/AntoBrandi/Self-Driving-and-ROS-2-Learn-by-Doing-Odometry-Control/tree/main)
+* [Repositorio Odometry Control - ROS1](https://github.com/AntoBrandi/Self-Driving-and-ROS-Learn-by-Doing-Odometry-Control)
+* [Repositorio Arduino-Bot (humble)](https://github.com/AntoBrandi/Arduino-Bot/tree/humble)
 
-```shell
-git https://github.com/Mattyete/ROS2_LIMO_ws.git
+---
+
+## **1. Configuración del proyecto del robot en entorno virtual para simulación**
+
+### a) Simulación en TheConstruct
+
+Utilizando la interfaz de TheConstruct, clona el siguiente repositorio:
+
+```bash
+git clone https://github.com/Mattyete/ROS2_LIMO_ws.git
 cd ROS2_LIMO_ws
 colcon build
 source install/local_setup.bash
 ```
-- Add in .bashrc the lines:
-````shell
+
+#### Añadir en `.bashrc` las siguientes líneas:
+
+```bash
 export ROS_DOMAIN_ID=0
 export TURTLEBOT3_MODEL=waffle
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
@@ -42,52 +50,62 @@ source /opt/ros/humble/setup.bash
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 source /home/user/ROS2_rUBot_tutorial_ws/install/setup.bash
 source /home/user/ROS2_LIMO_ws/install/setup.bash
-#cd /home/user/ROS2_rUBot_tutorial_ws
 cd /home/user/ROS2_LIMO_ws
+```
 
-````
-- If the compilation process returns warnings on "Deprecated setup tools":
-````shell
+#### Si aparecen advertencias sobre `setuptools`:
+
+```bash
 sudo apt install python3-pip
 pip3 list | grep setuptools
 pip3 install setuptools==58.2.0
-````
-- If the compilation process returns wardings on PREFIX_PATH:
-````shell
+```
+
+#### Si aparecen advertencias sobre `PREFIX_PATH`:
+
+```bash
 unset COLCON_PREFIX_PATH
 unset AMENT_PREFIX_PATH
 unset CMAKE_PREFIX_PATH
 cd ~/ROS2_LIMO_ws
 rm -rf build/ install/ log/
 colcon build
-````
-- Open a new terminal to ensure the .bashrc is read again
+```
 
-## **2. Setup the robot project for real control**
+Abre una nueva terminal para que se vuelva a leer el `.bashrc`.
 
-Here we will review the Computer onboard used for each robot and the designed setup process.
+---
 
-The setup process is based on a custom Docker to properly interface with the ROS2 environment.
+## **2. Configuración del proyecto del robot para control real**
 
-### **2.1. Setup the LIMO robot**
+Aquí se revisa el ordenador embarcado usado en el robot y el proceso de configuración diseñado.
 
-- Jetson Nano computer onboard
-- Custom Dockerfile and docker-compose 
+La instalación se basa en un Docker personalizado para integrarse correctamente con ROS2.
 
-When the commercial LIMO robot is plugged on, the docker-compose-v3.yaml service is executed and the LIMO robot is ready to be controlled within the TheConstruct environment.
+### **2.1. Configuración del robot LIMO**
 
-- Using a PC connected to the same network 
-  - connect with robot within ssh using VScode
-  - review the running containers
-  - Attach a new VScode window on the Limo container
-  - to see the ros topics type
-    ````shell
-    source /limo_entrypoint-v3.sh
-    ros2 topic list
-    ````
-- Using the TheConstruct RRL service
-  - Install the robot on your account (this is already done for you)
-  - Connect to the robot and type in a new terminal
-    ````shell
-    ros2 topic list
-    ````
+* Ordenador Jetson Nano embarcado.
+* Uso de `Dockerfile` y `docker-compose` personalizados.
+
+Cuando el robot LIMO se conecta, se ejecuta el servicio definido en `docker-compose-v3.yaml` y el robot queda listo para ser controlado desde TheConstruct.
+
+#### Desde un PC en la misma red:
+
+* Conéctate por SSH con VSCode.
+* Verifica los contenedores activos.
+* Abre una nueva ventana de VSCode adjunta al contenedor LIMO.
+* Para ver los tópicos de ROS:
+
+```bash
+source /limo_entrypoint-v3.sh
+ros2 topic list
+```
+
+#### Desde el servicio RRL de TheConstruct:
+
+* El robot ya está instalado en tu cuenta.
+* Conéctate al robot y en una nueva terminal escribe:
+
+```bash
+ros2 topic list
+```
