@@ -111,6 +111,8 @@ ros2 topic list
 ros2 topic list
 ```
 
+![Topics LIMO](./Images/ROS2_topic_list.jpeg)
+
 # **USO de ROS2 LIMO**
 ## **USO de SelfControl y Wallfollower**
 ### **Entorno simulado (TheConstruct)**
@@ -118,6 +120,8 @@ Para lanzar el bringup del robot en simulación, abre una terminal y ejecuta:
 ```bash
 ros2 launch my_robot_bringup my_robot_bringup_sw.launch.xml use_sim_time:=True x0:=1.0 y0:=1.0 yaw0:=1.8 custom_world:=square3m_walls.world
 ```
+
+![BringUP LIMO](./Images/bringUp_TheConstruct.png)
 
 Luego, abre una nueva terminal y ejecuta el nodo de evitación de obstáculos:
 ```bash
@@ -128,6 +132,10 @@ Para lanzar el nodo de seguimiento de paredes en lugar del anterior:
 ```bash
 ros2 launch my_robot_control my_robot_wallfollower_LIMO.launch.xml time_to_stop:=10.0
 ```
+
+![Wallfollower LIMO](./Images/Wallfolower_TheConstruct.png)
+
+![Wallfollower2 LIMO](./Images/Wallfolower2_TheConstruct.png)
 
 ### **Entorno real**
 Para el entorno real, el bringup ya se ejecuta automáticamente al encender el robot gracias al docker-compose-v3.yaml, por lo que solo debes lanzar los nodos de control desde una terminal (conectándote vía VSCode al contenedor ROS o mediante TheConstruct):
@@ -169,6 +177,8 @@ cd src/Navigation_Projects/my_robot_navigation2/map/
 ros2 run nav2_map_server map_saver_cli -f my_map
 ```
 
+![SLAM LIMO](./Images/SLAM_map_generation.png)
+
 ### **Entorno real**
 
 Al encender el robot, el bringup ya se lanza automáticamente por docker-compose.
@@ -206,15 +216,19 @@ ros2 launch my_robot_navigation2 navigation2_robot.launch.py use_sim_time:=False
 
 Usa "2D Pose Estimate" en RViz para localizar al robot en el mapa. Una vez hecho, podrás enviar objetivos de navegación.
 
+![NAV LIMO](./Images/NAV_move.png)
+
 ### **Navegación programática con Simple Commander**
+
+Lanza el nodo de navegación:
+### **Entorno simulado (TheConstruct)**
 
 Lanza el bringup del LIMO:
 ```bash
 ros2 launch my_robot_bringup my_robot_bringup_sw.launch.xml use_sim_time:=True x0:=0.5 y0:=-1.5 yaw0:=1.57 custom_world:=square4m_sign.world
 ```
 
-Lanza el nodo de navegación:
-### **Entorno simulado (TheConstruct)**
+En una nueva terminal:
 ```bash
 ros2 launch my_robot_navigation2 navigation2_robot.launch.py use_sim_time:=True map:=map_square4m_sign.yaml param:=limo_sw.yaml
 ```
@@ -228,6 +242,8 @@ Ejecuta el script para enviar la posición inicial y waypoints:
 ```bash
 ros2 run my_robot_nav_control nav_target0_exec
 ```
+
+![NAV2 LIMO](./Images/NAV2_move.png)
 
 ## **PROYECTO BASADO EN EL RECONOCIMIENTO DE OBJETOS (KERAS)**
 Se describe un método basado en Visión Artificial para identificar señales de tráfico.
@@ -393,6 +409,10 @@ model.save("yolov8n_custom.pt")
 path = model.export(format="onnx")
 ```
 
+![YOLO Time Training](./Images/YOLO_time_training.png)
+
+![YOLO Detection](./Images/YOLO_detection.png)
+
 2. Usar el modelo entrenado para predecir (Model_training_yolo.py):
 ```python
 from ultralytics import YOLO
@@ -424,7 +444,8 @@ source install/setup.bash
 ros2 run my_robot_ai_identification rt_prediction_yolo_exec
 ```
 
-
 ## 5. Actuación del robot tras la predicción
 
 Una vez que el robot identifica la señal de tráfico, debe actuar en consecuencia a lo que detecte el robot, en caso de ser un STOP, para durante 3 segundos, en caso de ser un ceda disminuye la velocidad, etc.
+
+![YOLO Detection Simulation](./Images/YOLO_detection_simulation.png)
