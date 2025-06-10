@@ -10,7 +10,7 @@
 
 * Robot comercial **LIMO**
 
-![Robot LIMO](./Images/rUBot_Limo.png)
+![Robot LIMO](./Images/limo_robot.png)
 
 ### Webgrafía:
 
@@ -89,6 +89,8 @@ La instalación se basa en un Docker personalizado para integrarse correctamente
 
 Cuando el robot LIMO se conecta, se ejecuta el servicio definido en `docker-compose-v3.yaml` y el robot queda listo para ser controlado desde TheConstruct.
 
+Si falla el docker-compose-v3.yaml, parar el contenedor y seguir los pasos que están en https://hub.docker.com/r/theconstructai/limo. (Aplicar lo mismo pero con el archivo docker-compose-v3.yaml)
+
 #### Desde un PC en la misma red:
 
 * Conéctate por SSH con VSCode.
@@ -103,7 +105,7 @@ ros2 topic list
 
 #### Desde el servicio RRL de TheConstruct:
 
-* El robot ya está instalado en tu cuenta.
+* Instala en tu cuenta el robot LIMO.
 * Conéctate al robot y en una nueva terminal escribe:
 
 ```bash
