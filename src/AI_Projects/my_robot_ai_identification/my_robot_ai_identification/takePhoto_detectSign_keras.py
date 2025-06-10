@@ -28,7 +28,7 @@ class KerasImageClassifier(Node):
         self.bridge = CvBridge()
         self.image_sub = self.create_subscription(
             Image,
-            "/usb_cam/image_raw",
+            "/camera/color/image_raw",
             self.image_callback,
             10  # QoS history depth
         )

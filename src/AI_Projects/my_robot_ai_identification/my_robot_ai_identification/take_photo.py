@@ -48,7 +48,7 @@ class TakePhoto(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = TakePhoto(
-        img_topic=node.declare_parameter('image_topic', '/usb_cam/image_raw').value,
+        img_topic=node.declare_parameter('image_topic', '/camera/color/image_raw').value,
         image_dir=node.declare_parameter('image_dir', '/home/user/ROS2_LIMO_ws/src/AI_Projects/my_robot_ai_identification/photos').value
     )
     rate = node.create_rate(1)  # 1 Hz
