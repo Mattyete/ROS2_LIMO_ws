@@ -69,13 +69,12 @@ Here we will review the Computer onboard used for each robot and the designed se
 
 The setup process is based on a custom Docker to properly interface with the ROS2 environment.
 
-### **2.1. Setup the rUBot mecanum**
+### **2.1. Setup the LIMO robot**
 
-The UB custom rUBot mecanum custom made robot is based on:
-- Raspberrypi4 computer onboard
+- Jetson Nano computer onboard
 - Custom Dockerfile and docker-compose 
 
-When the real robot is plugged on, the docker-compose.yaml service is executed and the rUBot is ready to be controlled within the TheConstruct environment.
+When the commercial LIMO robot is plugged on, the docker-compose-v3.yaml service is executed and the LIMO robot is ready to be controlled within the TheConstruct environment.
 
 - Using a PC connected to the same network 
   - connect with robot within ssh using VScode
