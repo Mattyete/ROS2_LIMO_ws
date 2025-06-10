@@ -133,9 +133,9 @@ Para lanzar el nodo de seguimiento de paredes en lugar del anterior:
 ros2 launch my_robot_control my_robot_wallfollower_LIMO.launch.xml time_to_stop:=10.0
 ```
 
-![Wallfollower LIMO](./Images/Wallfolower_TheConstruct.png)
+![Wallfollower LIMO](./Images/Wallfollower_TheConstruct.png)
 
-![Wallfollower2 LIMO](./Images/Wallfolower2_TheConstruct.png)
+![Wallfollower2 LIMO](./Images/Wallfollower2_TheConstruct.png)
 
 ### **Entorno real**
 Para el entorno real, el bringup ya se ejecuta automáticamente al encender el robot gracias al docker-compose-v3.yaml, por lo que solo debes lanzar los nodos de control desde una terminal (conectándote vía VSCode al contenedor ROS o mediante TheConstruct):
